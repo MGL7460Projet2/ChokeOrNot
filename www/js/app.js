@@ -49,35 +49,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.choke-detail', {
+    url: '/dash/:chokeId',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-dash': {
+        templateUrl: 'templates/choke-detail.html',
+        controller: 'ChokeDetailCtrl'
       }
     }
-  });
+  })
+  .state('tab.events', {
+      url: '/events',
+      views: {
+        'tab-events': {
+          templateUrl: 'templates/tab-events.html',
+          controller: 'EventsCtrl'
+        }
+      }
+    })
+    .state('tab.event-detail', {
+      url: '/events/:evId',
+      views: {
+        'tab-events': {
+          templateUrl: 'templates/event-detail.html',
+          controller: 'EventDetailCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
