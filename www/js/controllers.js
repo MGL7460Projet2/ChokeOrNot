@@ -1,7 +1,16 @@
 angular.module('starter.controllers', [])
 
+.controller('LoginCtrl', function($http,$state) {
+    $http.get('https://shrouded-harbor-6203.herokuapp.com/api/auth/facebook').then(function(res) {
+      if(res[content]  == "Autentication success !"){
+        $state.go(tab.dash);
+      }
+    });
+})
+
 .controller('DashCtrl', function($scope, Chokes) {
     $scope.chokes = Chokes.all();
+    //$http.get('https://shrouded-harbor-6203.herokuapp.com/api/auth/facebook');
 })
 
 .controller('ChokeDetailCtrl', function($scope, $stateParams, Chokes) {

@@ -1,8 +1,8 @@
 angular.module('starter.services', [])
 
-.factory('Chokes', function() {
+.factory('Chokes', function($http) {
   // Might use a resource here that returns a JSON array
-
+  
   // Some fake testing data
   var chokes = [{
     id: 0,
