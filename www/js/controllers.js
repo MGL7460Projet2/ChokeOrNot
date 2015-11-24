@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 .controller('DashCtrl', function($scope, Chokes) {
     $scope.chokes = Chokes.all();
