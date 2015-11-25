@@ -6,9 +6,15 @@
 -->
 <ion-view view-title="{{ev.name}}">
   <ion-content class="padding">
-    
     <p>
+      Description :
       {{ev.description}}
+    </p>
+    <p>
+      Where : {{ev.place.name}}
+    </p>
+    <p>
+      When : {{ev.start_time | date:'dd/MM/yyyy'}} at {{ev.start_time | date:'HH:mm'}}
     </p>
   </ion-content>
 </ion-view>

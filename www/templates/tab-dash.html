@@ -1,10 +1,8 @@
 <ion-view view-title="Dashboard">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="choke in chokes" type="item-text-wrap" href="#/tab/dash/{{choke.id}}">
-        <img ng-src="{{choke.face}}"
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="choke in chokes" type="item-text-wrap" href="#/tab/dash/{{choke._id}}">
         <h2>{{choke.name}}</h2>
-        <p>{{choke.lastText}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

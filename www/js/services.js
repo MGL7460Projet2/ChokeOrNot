@@ -2,7 +2,7 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('Chokes', function($resource) {
 
-  var chokes =  $resource('http://localhost:3000/api/chokes');
+  var chokes = $resource('https://shrouded-harbor-6203.herokuapp.com/api/chokes/');
 
   return {
     all: function() {
@@ -10,7 +10,7 @@ angular.module('starter.services', ['ngResource'])
     },
     get: function(chokeId) {
       for (var i = 0; i < chokes.length; i++) {
-        if (chokes[i].id === parseInt(chokeId)) {
+        if (chokes[i]._id === chokeId) {
           return chokes[i];
         }
       }
@@ -19,17 +19,18 @@ angular.module('starter.services', ['ngResource'])
   };
 })
 
-.factory('Events', function($ressource) {
+.factory('Events', function($resource) {
 
-  var events = $resource('http://localhost:3000/api/myEvents');
-  console.log(events);
+  var temp = $resource('https://shrouded-harbor-6203.herokuapp.com/api/myEvents/');
+  var events = temp['events'][0];
+
   return {
     all: function() {
       return events;
     },
     get: function(evId) {
       for (var i = 0; i < events.length; i++) {
-        if (events[i].id === parseInt(evId)) {
+        if (events[i].id === evId) {
           return events[i];
         }
       }
