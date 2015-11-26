@@ -4,11 +4,16 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{choke.name}}">
+<ion-view view-title="Sender : {{choke.sender}}">
   <ion-content class="padding">
     <img ng-src="{{choke.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{choke.lastText}}
-    </p>
+    <h1>Choke :</h1>
+    <h2>Sender : {{choke.sender}}</h2>
+    <h2>Receiver : {{choke.receiver}}</h2>
+    <h3>Event : {{choke.event}}</h3>
+    <p>Is this Choke answered ? : {{choke.answered}}</p>
+    <p>What's the answer : {{choke.response}}</p>
+    <button ng-show="show({{choke.receiver}})" ng-click="yes()">Yes</button>
+    <button ng-show="show({{choke.receiver}})" ng-click="no()">No</button>
   </ion-content>
 </ion-view>

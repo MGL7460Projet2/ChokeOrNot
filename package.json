@@ -2,15 +2,17 @@
   "name": "chokeornot",
   "version": "1.0.0",
   "description": "ChokeOrNot: An Ionic project",
-  "scripts" : {
-    "watch" : "nodemon -- server.js"
+  "scripts": {
+    "watch": "nodemon -- server.js"
   },
   "dependencies": {
+    "cordova": "^5.4.0",
     "gulp": "^3.5.6",
-    "gulp-sass": "^2.0.4",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4",
+    "ionic": "^1.7.10"
   },
   "devDependencies": {
     "bower": "^1.6.5",

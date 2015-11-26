@@ -1,0 +1,12 @@
+<ion-view view-title="Événements">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="us in users" type="item-text-wrap" href="#/tab/events/{{ev.id}}/users/{{user.id}}">
+        <img ng-src="{{us.face}}">
+        <h2>{{us.name}}</h2>
+        <a href="#/tab/dash" ng-click ="choke({{us.id}})">Choke</a>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -36,6 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'LoginCtrl'
   })
 
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -44,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   // Each tab has its own nav history stack:
-
+  // Ici on met le contrôleur Login, on se log avec le facebook front-end, on envoie au serveur le token et c'est bon.
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -80,9 +81,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'EventDetailCtrl'
         }
       }
+    })
+    .state('tab.event-detail-users', {
+      url : '/events/:evId/users',
+      views : {
+        'tab-events':{
+          templateUrl : 'templates/event-users.html',
+          controller : 'EventUsersCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/login');
 
 });

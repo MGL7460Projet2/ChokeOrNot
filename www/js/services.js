@@ -1,93 +1,149 @@
 angular.module('starter.services', [])
+.factory('Credentials', function(){
+  //Here to stock id & access token
+  var credentials = {
+    id : "",
+    token : ""
+  }
+
+  return({
+    set : function(id, token){
+        credentials.id = id;
+        credentials.token = token;
+    },
+    get : function(){
+      return credentials;
+    }
+  });
+})
 
 .factory('Chokes', function($http) {
   // Might use a resource here that returns a JSON array
-  
-  // Some fake testing data
-  var chokes = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
+  var mychokes = [];
 
   return {
     all: function() {
-      return chokes;
+      return mychokes;
     },
     get: function(chokeId) {
-      for (var i = 0; i < chokes.length; i++) {
-        if (chokes[i].id === parseInt(chokeId)) {
-          return chokes[i];
+      for (var i = 0; i < mychokes.length; i++) {
+        if (mychokes[i].id === (chokeId)) {
+          return mychokes[i];
         }
       }
       return null;
+    },
+    set : function(data){
+      console.log("Chokes setting starts now");
+
+      for(i in data){
+        mychokes.push({
+          id : data[i]._id,
+          sender : data[i].fbSender,
+          receiver: data[i].fbReceiver,
+          event : data[i].event,
+          answered : data[i].answered,
+          response : data[i].response,
+          face : 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+        });
+      }
+      console.log("Chokes set");
+    },
+    clear : function(){
+      mychokes = [];
+    },
+    add : function(choke){
+      mychokes.push(choke);
+    },
+    updateResponse : function(chokeID, res){
+      for(i in mychokes){
+        if(mychokes[i].id == chokeID){
+          mychokes[i].answered = true;
+          mychokes[i].response = res;
+        }
+      }
     }
   };
 })
 
 .factory('Events', function() {
   // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var events = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
+  var myEvents = [];
 
   return {
-    all: function() {
-      return events;
+    all: function(){
+          return myEvents;
     },
     get: function(evId) {
-      for (var i = 0; i < events.length; i++) {
-        if (events[i].id === parseInt(evId)) {
-          return events[i];
+      for (var i = 0; i < myEvents.length; i++) {
+        if (myEvents[i].id === evId) {
+          return myEvents[i];
         }
       }
-      return null;
+      // In case of error, sends this
+      return {
+          id : 0,
+          name : "failed to load events",
+          lastText : "Looks like you're not connected to internet, try when you got a connection or reload the tab",
+          startTime : ""
+      };
+    },
+    set : function(data){
+      console.log("Data Setting starts now");
+
+      for(i in data.events){
+        myEvents.push({
+          id : data.events[i].id,
+          name : data.events[i].name,
+          lastText : data.events[i].description,
+          startTime : data.events[i]['start time'],
+          face : 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+        });
+      }
+      console.log("Data set");
+
+
+    }
+  };
+
+})
+
+.factory('EventUsers', function() {
+  // Might use a resource here that returns a JSON array
+  var eventUsers = [];
+
+  return {
+    all: function(){
+          return eventUsers;
+    },
+    get: function(evId) {
+      for (var i = 0; i < eventUsers.length; i++) {
+        if (eventUsers[i].id === evId) {
+          return eventUsers[i];
+        }
+      }
+      // In case of error, sends this
+      return {
+          id : 0,
+          name : "failed to load events",
+          lastText : "Looks like you're not connected to internet, try when you got a connection or reload the tab",
+          startTime : ""
+      };
+    },
+    set : function(data){
+      console.log("Event users setting starts now");
+
+      for(i in data){
+        eventUsers.push({
+          id : data[i].id,
+          name : data[i].name,
+          face : 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+        });
+      }
+      console.log("Event users set");
+    },
+    clear : function(){
+      eventUsers = [];
     }
   };
 });
